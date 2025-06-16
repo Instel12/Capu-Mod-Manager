@@ -1,0 +1,44 @@
+[
+    {
+        "title": "BepInEx",
+        "requirescaputilla" : "false",
+        "version": "6.0.0-pre.2 (modified)",
+        "author": "BepInEx Team (MonkyGT for the fix)",
+        "download": "https://github.com/Instel12/Capu-Mod-Manager/raw/refs/heads/main/bepinexpackage.7z"
+    },
+    {
+        "title": "Caputilla",
+        "requirescaputilla" : "false",
+        "version": "1.1.2",
+        "author": "MonkyGT",
+        "download": "https://github.com/MonkyGT/Caputilla/releases/download/1.1.2/Caputilla.dll"
+    },
+    {
+        "title": "Banapuchin",
+        "requirescaputilla" : "true",
+        "version": "1.0.1",
+        "author": "HanSolo1OOOFalcon",
+        "download": "https://github.com/HanSolo1OOOFalcon/Banapuchin/releases/download/v1.0.1/Banapuchin.dll"
+    },
+    {
+        "title": "Fly",
+        "requirescaputilla" : "true",
+        "version": "1.0.0",
+        "author": "Instel",
+        "download": "https://github.com/Instel12/Capuchin-Fly/releases/download/1.0.0/Fly.dll"
+    },
+    {
+        "title": "Size Changer",
+        "requirescaputilla" : "true",
+        "version": "1.1.0",
+        "author": "Instel",
+        "download": "https://github.com/Instel12/Capuchin-Size-Changer/releases/download/1.1.0/size.changer.dll"
+    },
+    {
+        "title": "Photograph Device Modification",
+        "requirescaputilla" : "false",
+        "version": "1.0.0",
+        "author": "HanSolo1OOOFalcon",
+        "download": "https://github.com/HanSolo1OOOFalcon/Photograph-Device-Modification/releases/download/v1.0.0/PhotographDeviceModification.dll"
+    }
+]
