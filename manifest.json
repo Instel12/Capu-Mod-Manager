@@ -14,6 +14,20 @@
         "download": "https://github.com/MonkyGT/Caputilla/releases/download/1.1.2/Caputilla.dll"
     },
     {
+        "title": "CB_Cardboard",
+        "requirescaputilla" : "false",
+        "version": "0.0.1",
+        "author": "CapuchinModding",
+        "download": "https://github.com/CapuchinModding/CB_Cardboard/releases/download/0.0.1/CBCapuchin.dll"
+    },
+    {
+        "title": "Init Manager",
+        "requirescaputilla" : "false",
+        "version": "1.0.0",
+        "author": "HanSolo1OOOFalcon",
+        "download": "https://github.com/HanSolo1OOOFalcon/InitManager/releases/download/v1.0.0/InitManager.dll"
+    },
+    {
         "title": "Banapuchin",
         "requirescaputilla" : "true",
         "version": "1.0.1",
