@@ -2,8 +2,8 @@
     {
         "title": "BepInEx",
         "requirescaputilla" : "false",
-        "version": "6.0.0-pre.2 (modified)",
-        "author": "BepInEx Team (MonkyGT for the fix)",
+        "version": "6.0.0-pre.2",
+        "author": "BepInEx Team (MonkyGT fixed it)",
         "download": "https://github.com/Instel12/Capu-Mod-Manager/raw/refs/heads/main/bepinexpackage.7z"
     },
     {
