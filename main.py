@@ -6,11 +6,32 @@ import os
 import shutil
 import tempfile
 import py7zr
+import webbrowser
+
+app = tk.Tk()
+app.title("Capu Mod Manager")
+app.geometry("450x265")
+app.resizable(False, False)
+
+APPDATA_DIR = os.path.join(os.getenv("APPDATA"), "capumodmanager")
+os.makedirs(APPDATA_DIR, exist_ok=True)
+
+INSTALLED_MODS_PATH = os.path.join(APPDATA_DIR, "mods.json")
+
+def load_installed_mods():
+    if os.path.exists(INSTALLED_MODS_PATH):
+        with open(INSTALLED_MODS_PATH, "r") as f:
+            return json.load(f)
+    return []
+
+def save_installed_mods(mods):
+    with open(INSTALLED_MODS_PATH, "w") as f:
+        json.dump(mods, f)
 
 def open_game_folder():
     path = dir_var.get()
     if not os.path.isdir(path):
-        messagebox.showerror("Error", "The selected game folder does not exist. Try setting the game directory somewhere else.")
+        messagebox.showerror("Error", "The selected game folder does not exist.")
         return
     os.startfile(path)
 
@@ -26,9 +47,9 @@ def load_manifest():
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException:
-        messagebox.showerror("Error", "Failed to load manifest, try again later. Please report this to the Github if there are still issues after around 2 days of trying again.")
+        messagebox.showerror("Error", "Failed to load manifest.")
     except json.JSONDecodeError:
-        messagebox.showerror("Error", "manifest.json is incorrectly formatted.\nPlease report this issue to the GitHub!")
+        messagebox.showerror("Error", "Manifest format error.")
     return []
 
 def install_selected_mods():
@@ -41,12 +62,19 @@ def install_selected_mods():
     os.makedirs(plugins_dir, exist_ok=True)
 
     selected_mods = [mod for mod in manifest if mod_vars[mod["title"]].get() == 1]
-
-    if not selected_mods:
-        messagebox.showinfo("No Mods Selected", "Please select at least one mod to install.")
-        return
+    selected_titles = [mod["title"] for mod in selected_mods]
+    previously_installed = load_installed_mods()
 
     try:
+        for mod in manifest:
+            title = mod["title"]
+            if title in previously_installed and title not in selected_titles:
+                file_name = mod.get("download", "").split("/")[-1]
+                if file_name:
+                    path = os.path.join(plugins_dir, file_name)
+                    if os.path.exists(path):
+                        os.remove(path)
+
         for mod in selected_mods:
             title = mod.get("title", "Unknown")
             url = mod.get("download")
@@ -55,22 +83,18 @@ def install_selected_mods():
 
             response = requests.get(url, stream=True)
             response.raise_for_status()
-
             file_name = url.split("/")[-1]
             temp_path = os.path.join(tempfile.gettempdir(), file_name)
 
             with open(temp_path, "wb") as f:
                 for chunk in response.iter_content(chunk_size=8192):
-                    if chunk:
-                        f.write(chunk)
+                    f.write(chunk)
 
             if title == "BepInEx" and file_name.endswith(".7z"):
                 with py7zr.SevenZipFile(temp_path, mode='r') as archive:
                     archive.extractall(path=game_dir)
             else:
-                if file_name.endswith(".dll"):
-                    shutil.copy(temp_path, os.path.join(plugins_dir, file_name))
-                elif file_name.endswith(".7z"):
+                if file_name.endswith(".7z"):
                     with py7zr.SevenZipFile(temp_path, mode='r') as archive:
                         archive.extractall(path=plugins_dir)
                 else:
@@ -78,17 +102,13 @@ def install_selected_mods():
 
             os.remove(temp_path)
 
-        messagebox.showinfo("Success", "Selected mods have been installed or updated.")
+        save_installed_mods(selected_titles)
+        messagebox.showinfo("Success", "Selected mods installed/updated.")
 
     except Exception as e:
-        messagebox.showerror("Error", f"Failed to install mods:\n{e}")
+        messagebox.showerror("Error", f"Installation failed:\n{e}")
 
-
-app = tk.Tk()
-app.title("Capu Mod Manager")
-app.geometry("450x280")
-app.resizable(False, False)
-
+# === UI Setup ===
 top_frame = tk.Frame(app)
 top_frame.pack(side=tk.TOP, fill=tk.X, padx=4, pady=4)
 
@@ -98,7 +118,6 @@ entry.grid(row=0, column=0, sticky="ew", padx=(0, 4))
 
 browse_button = tk.Button(top_frame, text="Browse", command=browse_folder)
 browse_button.grid(row=0, column=1)
-
 top_frame.columnconfigure(0, weight=1)
 
 mods_frame = tk.Frame(app, highlightbackground="gray", highlightthickness=1, height=200)
@@ -135,12 +154,13 @@ def update_caputilla_requirement():
         else:
             caputilla_cb.config(state="normal")
 
+installed = load_installed_mods()
 for index, mod in enumerate(manifest):
     title = mod.get("title", "Unknown Mod")
     version = mod.get("version", "")
     author = mod.get("author", "Unknown Author")
     requires_caputilla = mod.get("requirescaputilla", "false").lower() == "true"
-    default_checked = 1 if title == "BepInEx" else 0
+    default_checked = 1 if title in installed or title == "BepInEx" else 0
 
     var = tk.IntVar(value=default_checked)
 
@@ -181,5 +201,14 @@ install_button.pack(side="left", padx=5)
 
 open_folder_button = tk.Button(bottom_frame, text="Open Game Folder", width=20, command=open_game_folder)
 open_folder_button.pack(side="left", padx=5)
+
+def github():
+    webbrowser.open('https://github.com/Instel12/Capu-Mod-Manager/tree/main')
+
+github_button = tk.Button(bottom_frame, text="GitHub", width=10, command=github)
+github_button.pack(side="left", padx=5)
+
+menubar = tk.Menu(app)
+app.config(menu=menubar)
 
 app.mainloop()
