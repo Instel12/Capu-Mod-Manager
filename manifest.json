@@ -4,76 +4,87 @@
         "requirescaputilla" : "false",
         "version": "6.0.0-pre.2 (modified)",
         "author": "BepInEx Team (MonkyGT for the fix)",
-        "download": "https://github.com/Instel12/Capu-Mod-Manager/raw/refs/heads/main/bepinexpackage.7z"
+        "download": "https://github.com/Instel12/Capu-Mod-Manager/raw/refs/heads/main/bepinexpackage.7z",
+        "catagory": "Core"
     },
     {
         "title": "Caputilla",
         "requirescaputilla" : "false",
         "version": "1.1.2",
         "author": "MonkyGT",
-        "download": "https://github.com/MonkyGT/Caputilla/releases/download/1.1.2/Caputilla.dll"
+        "download": "https://github.com/MonkyGT/Caputilla/releases/download/1.1.2/Caputilla.dll",
+        "catagory": "Librarys"
     },
     {
         "title": "CB_Cardboard",
         "requirescaputilla" : "false",
         "version": "0.0.1",
-        "author": "Bingus",
-        "download": "https://github.com/CapuchinModding/CB_Cardboard/releases/download/0.0.1/CBCapuchin.dll"
+        "author": "CapuchinModding",
+        "download": "https://github.com/CapuchinModding/CB_Cardboard/releases/download/0.0.1/CBCapuchin.dll",
+        "catagory": "Librarys"
     },
     {
         "title": "Init Manager",
         "requirescaputilla" : "false",
         "version": "1.0.0",
         "author": "HanSolo1OOOFalcon",
-        "download": "https://github.com/HanSolo1OOOFalcon/InitManager/releases/download/v1.0.0/InitManager.dll"
+        "download": "https://github.com/HanSolo1OOOFalcon/InitManager/releases/download/v1.0.0/InitManager.dll",
+        "catagory": "Librarys"
     },
     {
         "title": "Banapuchin",
         "requirescaputilla" : "true",
         "version": "1.0.2",
         "author": "HanSolo1OOOFalcon",
-        "download": "https://github.com/HanSolo1OOOFalcon/Banapuchin/releases/download/1.0.2/Banapuchin.dll"
+        "download": "https://github.com/HanSolo1OOOFalcon/Banapuchin/releases/download/1.0.2/Banapuchin.dll",
+        "catagory": "Gameplay"
     },
     {
         "title": "Fly",
         "requirescaputilla" : "true",
         "version": "1.0.0",
         "author": "Instel",
-        "download": "https://github.com/Instel12/Capuchin-Fly/releases/download/1.0.0/Fly.dll"
+        "download": "https://github.com/Instel12/Capuchin-Fly/releases/download/1.0.0/Fly.dll",
+        "catagory": "Gameplay"
     },
     {
         "title": "Size Changer",
         "requirescaputilla" : "true",
         "version": "1.1.0",
         "author": "Instel",
-        "download": "https://github.com/Instel12/Capuchin-Size-Changer/releases/download/1.1.0/size.changer.dll"
+        "download": "https://github.com/Instel12/Capuchin-Size-Changer/releases/download/1.1.0/size.changer.dll",
+        "catagory": "Gameplay"
     },
     {
         "title": "Real 0G",
         "requirescaputilla" : "true",
         "version": "1.0.0",
         "author": "Instel",
-        "download": "https://github.com/Instel12/Real-0G/releases/download/1.0.0/real0g.dll"
+        "download": "https://github.com/Instel12/Real-0G/releases/download/1.0.0/real0g.dll",
+        "catagory": "Gameplay"
     },
     {
         "title": "Photograph Device Modification",
         "requirescaputilla" : "false",
         "version": "1.0.0",
         "author": "HanSolo1OOOFalcon",
-        "download": "https://github.com/HanSolo1OOOFalcon/Photograph-Device-Modification/releases/download/v1.0.0/PhotographDeviceModification.dll"
+        "download": "https://github.com/HanSolo1OOOFalcon/Photograph-Device-Modification/releases/download/v1.0.0/PhotographDeviceModification.dll",
+        "catagory": "Utils"
     },
     {
         "title": "Capu Tags",
         "requirescaputilla" : "false",
         "version": "1.0.0",
         "author": "HanSolo1OOOFalcon",
-        "download": "https://github.com/HanSolo1OOOFalcon/Capu-Tags/releases/download/1.0.0/CapuTags.dll"
+        "download": "https://github.com/HanSolo1OOOFalcon/Capu-Tags/releases/download/1.0.0/CapuTags.dll",
+        "catagory": "Utils"
     },
     {
         "title": "Music Controls Capuchin",
         "requirescaputilla" : "false",
         "version": "1.0.0",
         "author": "HanSolo1OOOFalcon",
-        "download": "https://github.com/HanSolo1OOOFalcon/MusicControlsCapuchin/releases/download/1.0.0/MusicControlsCapuchin.dll"
+        "download": "https://github.com/HanSolo1OOOFalcon/MusicControlsCapuchin/releases/download/1.0.0/MusicControlsCapuchin.dll",
+        "catagory": "Utils"
     }
 ]
