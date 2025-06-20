@@ -211,41 +211,61 @@ def filter_mods(*args):
 search_var.trace_add("write", filter_mods)
 
 installed = load_installed_mods()
-for index, mod in enumerate(manifest):
-    title = mod.get("title", "Unknown Mod")
-    version = mod.get("version", "")
-    author = mod.get("author", "Unknown Author")
-    requires_caputilla = mod.get("requirescaputilla", "false").lower() == "true"
-    default_checked = 1 if title in installed or title == "BepInEx" else 0
+from collections import defaultdict
 
-    var = tk.IntVar(value=default_checked)
+# Group mods by category
+mods_by_category = defaultdict(list)
+for mod in manifest:
+    category = mod.get("catagory", "Other")
+    mods_by_category[category].append(mod)
 
-    row_frame = tk.Frame(scrollable_frame, bg="#f0f0f0" if index % 2 == 0 else "#ffffff")
-    row_frame.pack(fill="x")
+row_index = 0
+installed = load_installed_mods()
 
-    cb = tk.Checkbutton(
-        row_frame,
-        text=title,
-        variable=var,
-        command=update_caputilla_requirement,
-        bg=row_frame["bg"],
-        anchor="w"
-    )
-    cb.pack(side="left", padx=(10, 5))
+for category in sorted(mods_by_category.keys()):
+    # Category label
+    cat_label = tk.Label(scrollable_frame, text=category, font=("Arial", 10, "bold"), anchor="w")
+    cat_label.pack(fill="x", pady=(8, 0), padx=10)
+    cat_label.configure(bg="#dcdcdc")
 
-    info_label = tk.Label(
-        row_frame,
-        text=f"{version} | by {author}",
-        bg=row_frame["bg"],
-        fg="gray"
-    )
-    info_label.pack(side="left", padx=5)
+    for mod in mods_by_category[category]:
+        title = mod.get("title", "Unknown Mod")
+        version = mod.get("version", "")
+        author = mod.get("author", "Unknown Author")
+        requires_caputilla = mod.get("requirescaputilla", "false").lower() == "true"
+        default_checked = 1 if title in installed or title == "BepInEx" else 0
 
-    if title == "BepInEx":
-        cb.config(state="disabled")
+        var = tk.IntVar(value=default_checked)
 
-    mod_vars[title] = var
-    mod_checkbuttons[title] = cb
+        row_frame = tk.Frame(scrollable_frame, bg="#f0f0f0" if row_index % 2 == 0 else "#ffffff")
+        row_frame.pack(fill="x")
+
+        cb = tk.Checkbutton(
+            row_frame,
+            text=title,
+            variable=var,
+            command=update_caputilla_requirement,
+            bg=row_frame["bg"],
+            anchor="w"
+        )
+        cb.pack(side="left", padx=(10, 5))
+
+        info_label = tk.Label(
+            row_frame,
+            text=f"{version} | by {author}",
+            bg=row_frame["bg"],
+            fg="gray"
+        )
+        info_label.pack(side="left", padx=5)
+
+        if title == "BepInEx":
+            cb.config(state="disabled")
+
+        mod_vars[title] = var
+        mod_checkbuttons[title] = cb
+
+        row_index += 1
+
 
 update_caputilla_requirement()
 
