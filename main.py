@@ -10,7 +10,7 @@ import webbrowser
 
 app = tk.Tk()
 app.title("Capu Mod Manager")
-app.geometry("450x265")
+app.geometry("410x287")
 app.resizable(False, False)
 
 APPDATA_DIR = os.path.join(os.getenv("APPDATA"), "capumodmanager")
@@ -108,7 +108,6 @@ def install_selected_mods():
     except Exception as e:
         messagebox.showerror("Error", f"Installation failed:\n{e}")
 
-# === UI Setup ===
 top_frame = tk.Frame(app)
 top_frame.pack(side=tk.TOP, fill=tk.X, padx=4, pady=4)
 
@@ -135,6 +134,36 @@ canvas.configure(yscrollcommand=scrollbar.set)
 canvas.pack(side="left", fill="both", expand=True)
 scrollbar.pack(side="right", fill="y")
 
+def on_mousewheel(event):
+    canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+canvas.bind_all("<MouseWheel>", on_mousewheel)
+
+search_var = tk.StringVar()
+
+search_frame = tk.Frame(app)
+search_frame.pack(fill="x", padx=6, pady=(0, 6))
+
+search_entry = tk.Entry(search_frame, textvariable=search_var)
+search_entry.pack(side="left", fill="x", expand=True, padx=(0, 0))
+search_placeholder = "Search mods..."
+
+def on_entry_focus_in(event):
+    if search_entry.get() == search_placeholder:
+        search_entry.delete(0, tk.END)
+        search_entry.config(fg="black")
+
+def on_entry_focus_out(event):
+    if search_entry.get() == "":
+        search_entry.insert(0, search_placeholder)
+        search_entry.config(fg="gray")
+
+search_entry.insert(0, search_placeholder)
+search_entry.config(fg="gray")
+
+search_entry.bind("<FocusIn>", on_entry_focus_in)
+search_entry.bind("<FocusOut>", on_entry_focus_out)
+
 mod_vars = {}
 mod_checkbuttons = {}
 manifest = load_manifest()
@@ -153,6 +182,33 @@ def update_caputilla_requirement():
             caputilla_cb.config(state="disabled")
         else:
             caputilla_cb.config(state="normal")
+
+def filter_mods(*args):
+    search_term = search_var.get().lower()
+    visible_rows = []
+
+    for mod in manifest:
+        title = mod.get("title", "")
+        cb = mod_checkbuttons.get(title)
+        row_frame = cb.master if cb else None
+        if row_frame:
+            if search_term in title.lower():
+                visible_rows.append(row_frame)
+            else:
+                row_frame.pack_forget()
+
+    for row in visible_rows:
+        row.pack_forget()
+    for i, row in enumerate(visible_rows):
+        row.pack(fill="x")
+
+        bg = "#f0f0f0" if i % 2 == 0 else "#ffffff"
+        row.configure(bg=bg)
+        for widget in row.winfo_children():
+            if isinstance(widget, (tk.Checkbutton, tk.Label)):
+                widget.configure(bg=bg)
+
+search_var.trace_add("write", filter_mods)
 
 installed = load_installed_mods()
 for index, mod in enumerate(manifest):
