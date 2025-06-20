@@ -30,9 +30,9 @@
     {
         "title": "Banapuchin",
         "requirescaputilla" : "true",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "author": "HanSolo1OOOFalcon",
-        "download": "https://github.com/HanSolo1OOOFalcon/Banapuchin/releases/download/v1.0.1/Banapuchin.dll"
+        "download": "https://github.com/HanSolo1OOOFalcon/Banapuchin/releases/download/1.0.2/Banapuchin.dll"
     },
     {
         "title": "Fly",
@@ -61,5 +61,12 @@
         "version": "1.0.0",
         "author": "HanSolo1OOOFalcon",
         "download": "https://github.com/HanSolo1OOOFalcon/Capu-Tags/releases/download/1.0.0/CapuTags.dll"
+    },
+    {
+        "title": "Music Controls Capuchin",
+        "requirescaputilla" : "false",
+        "version": "1.0.0",
+        "author": "HanSolo1OOOFalcon",
+        "download": "https://github.com/HanSolo1OOOFalcon/MusicControlsCapuchin/releases/download/1.0.0/MusicControlsCapuchin.dll"
     }
 ]
