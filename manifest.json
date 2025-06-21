@@ -58,9 +58,9 @@
     {
         "title": "Real 0G",
         "requirescaputilla" : "true",
-        "version": "1.0.1",
+        "version": "1.0.0",
         "author": "Instel",
-        "download": "https://github.com/Instel12/Real-0G/releases/download/1.0.1/real0g.dll",
+        "download": "https://github.com/Instel12/Real-0G/releases/download/1.0.0/real0g.dll",
         "catagory": "Gameplay"
     },
     {
@@ -85,6 +85,14 @@
         "version": "1.0.0",
         "author": "HanSolo1OOOFalcon",
         "download": "https://github.com/HanSolo1OOOFalcon/MusicControlsCapuchin/releases/download/1.0.0/MusicControlsCapuchin.dll",
+        "catagory": "Utils"
+    },
+    {
+        "title": "No More Loading Screen",
+        "requirescaputilla" : "false",
+        "version": "1.0.0",
+        "author": "biotest052",
+        "download": "https://github.com/biotest052/NoMoreLoadingScreen/releases/download/1.0.0/NoMoreLoadingScreen.dll",
         "catagory": "Utils"
     }
 ]
