@@ -102,5 +102,13 @@
         "author": "baggZ-idk",
         "download": "https://github.com/baggZ-idk/No-Barrier/releases/download/tag/NoBarrier.dll",
         "catagory": "Utils"
+    },
+    {
+        "title": "CapuCosmetics",
+        "requirescaputilla" : "false",
+        "version": "1.0.0",
+        "author": "arielthemonke",
+        "download": "https://github.com/arielthemonke/CapuCosmetics/releases/download/v1.0.0/CapuchinCosmetics.dll",
+        "catagory": "Utils"
     }
 ]
