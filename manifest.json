@@ -94,5 +94,13 @@
         "author": "biotest052",
         "download": "https://github.com/biotest052/NoMoreLoadingScreen/releases/download/1.0.0/NoMoreLoadingScreen.dll",
         "catagory": "Utils"
+    },
+    {
+        "title": "No Barrier",
+        "requirescaputilla" : "false",
+        "version": "1.0.0",
+        "author": "baggZ-idk",
+        "download": "https://github.com/baggZ-idk/No-Barrier/releases/download/tag/NoBarrier.dll",
+        "catagory": "Utils"
     }
 ]
